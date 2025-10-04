@@ -1,3 +1,6 @@
+<img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/61a63bac-8988-4afb-8951-612ae585f564" />
+
+
 # 🚀 Debris Track LEO
 
 **Debris Track LEO** es un software en versión beta diseñado para rastrear y visualizar en tiempo real los desechos orbitales.  
