@@ -18,7 +18,7 @@ SateliteIcon = Array[Texture]([ExtResource("6_aiog4"), ExtResource("4_galhg")])
 Desconosido = ExtResource("7_16sgf")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 billboard = 1
 texture = ExtResource("6_aiog4")
 

@@ -26,7 +26,15 @@ func GravityNewton(mass_1: float, mass_2: float, pos_i: Vector3, pos_f: Vector3,
 		var parte1 = ( masas/V_absoluto_cubo)
 		var F = r * parte1 * G
 		return F * Escala
-	
+
+func GravityNewton2(mass_1: float, mass_2: float, pos_i: Vector3, pos_f: Vector3, Escala: int = 1) -> Vector3:
+		var r = pos_f - pos_i
+		var V_absoluto = r.length() #magnitud de r distancia
+		var V_absoluto_cuadrado = pow(V_absoluto, 2)
+		var masas = mass_1 * mass_2 
+		var parte1 = ( masas/V_absoluto_cuadrado)
+		var F = r.normalized() * parte1 * G
+		return F * Escala
 #region Transformacione
 #funciones de trasnformacion
 func A_Recta_A_grados(horas: int , minutos: int, segundos:float):
@@ -52,11 +60,13 @@ func CoordenadasHorarias_A_Cartecianas(AR:float, D:float, r:float):
 	return Vector3(X, Y, Z)
 	
 # Convertir de coordenadas geográficas (lat, lon, alt) a coordenadas cartesianas 3D
-func Lat_lon_convert_to_cartesian(lat: float, lon: float, alt: float) -> Vector3:
+func Lat_lon_convert_to_cartesian(lat: float, lon: float, alt: float, km = false) -> Vector3:
 	# Convertir latitud y longitud de grados a radianes
 	#lon = lon * -1
 	lat = deg_to_rad(lat) 
 	lon = deg_to_rad(lon)
+	if km:
+		alt = alt * 1000
 	# Calcular las coordenadas cartesianas
 	var x = (earth_radius + alt) * cos(lat) * cos(lon)
 #aqui se multiplica por -1 para que coisida con la conveniencia de signos de los sitemas geograficos anguares
@@ -64,6 +74,13 @@ func Lat_lon_convert_to_cartesian(lat: float, lon: float, alt: float) -> Vector3
 	var y = (earth_radius + alt) * sin(lat)  # Altitud se asocia al eje Y en Godot
 
 	return Vector3(x, y, z)
+	
+func velocity_cal(magnitude, rf, ri, km_h = false)-> Vector3:
+	if km_h:
+		magnitude = (magnitude * 1000)/3600.0
+	var vector : Vector3 = rf - ri
+	var UnityVector = vector.normalized()
+	return (UnityVector * magnitude)
 	
 #para los debris de los .fits
 func  DebrisMass(radio: float, V_angular:float):
@@ -85,7 +102,8 @@ func DebrisAngularVelocity_magnitud(Dec_i: float, Dec_f: float, AR_i: float, AR_
 func TangencialVelocity(AgularV: float, r_vector: Vector3):
 	var V: Vector3 = AgularV * r_vector
 	return V
-	
+
+
 #endregion
 
 
@@ -156,6 +174,23 @@ func juliano_a_gregoriano(dia_juliano: float) -> Dictionary:
 		"minutos": minutos,
 		"segundos": segundos
 	}
+
+func seconds_to_hms(total_seconds: int) -> Dictionary:
+	# Asegurarse de que los segundos sean positivos
+	total_seconds = max(total_seconds, 0)
+
+	# Calcular horas, minutos y segundos
+	var hours = total_seconds / 3600
+	var minutes = (total_seconds % 3600) / 60
+	var seconds = total_seconds % 60
+
+	# Retornar un diccionario con los valores
+	return {
+		"hours": hours,
+		"minutes": minutes,
+		"seconds": seconds
+	}
+
 #endregion
 
 #---------------------------------------------------------------------------------------------------

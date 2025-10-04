@@ -118,9 +118,9 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Este software esta incompleto y como tal tiene algunos errores o zonas sin terminar.
 
-1. error al registrar un fits, la convercion a fecha juliana da problemas, se recomienda usar el formato gregoriano mientras se soluciona.  [Problema solucionado]
-2.cargar base de datos, no se recarga en tiempo real si no que se carga la pestaña completa.
-3.la simulacion fisica 3D de los cuerpos aun no se puede usar."
+1. Herror al registrar un fits, la convercion a fecha juliana da problemas, se recomienda usar el formato gregoriano mientras se soluciona.  [Problema solucionado]
+2. Cargar base de datos, no se recarga en tiempo real si no que se carga la pestaña completa.
+3. Durante la simulacion todo el backend funciona normal, pero como solo se centraron esfuerzos en eso, algunas partes de la interfaz no muestran lo que deberian de mostrar."
 label_settings = ExtResource("1_3nt2j")
 autowrap_mode = 3
 
