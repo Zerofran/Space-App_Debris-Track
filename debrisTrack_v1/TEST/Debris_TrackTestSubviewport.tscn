@@ -1,0 +1,372 @@
+[gd_scene load_steps=26 format=3 uid="uid://ds8gbfyr0rfn5"]
+
+[ext_resource type="Texture2D" uid="uid://bhf2360tpi0c5" path="res://debrisTrack_v1/IMG_Texture/8k_stars_milky_way.jpg" id="1_hfk7p"]
+[ext_resource type="Script" path="res://debrisTrack_v1/Scripts/GloboTerraqueo.gd" id="2_ge2x3"]
+[ext_resource type="Shader" uid="uid://dqrpjlvfh7kvx" path="res://debrisTrack_v1/Shader/NightAndDayTest2.tres" id="3_fb34p"]
+[ext_resource type="Texture2D" uid="uid://cruuwqxueul0m" path="res://debrisTrack_v1/IMG_Texture/2k_earth_daymap.png" id="4_or6tp"]
+[ext_resource type="Texture2D" uid="uid://bftyqsgkjaex0" path="res://debrisTrack_v1/IMG_Texture/2k_earth_specular_map.jpg" id="5_hi5pq"]
+[ext_resource type="Texture2D" uid="uid://b42wqq15ddfbx" path="res://debrisTrack_v1/IMG_Texture/2k_earth_nightmap.png" id="6_h5g0u"]
+[ext_resource type="Texture2D" uid="uid://dsgsntgw3o7py" path="res://debrisTrack_v1/IMG_Texture/2k_earth_normal.jpg" id="7_wlo28"]
+[ext_resource type="Shader" uid="uid://dom8j45x3wfme" path="res://debrisTrack_v1/Shader/admosfera.tres" id="8_qh5fk"]
+[ext_resource type="Texture2D" uid="uid://cip454d6fxm1j" path="res://debrisTrack_v1/Shader/GradientFresnel.tres" id="9_yidkc"]
+[ext_resource type="Script" path="res://debrisTrack_v1/Scripts/CamaraControl.gd" id="10_7us3y"]
+[ext_resource type="StyleBox" uid="uid://c4y7ntcv0qygj" path="res://debrisTrack_v1/HUD/PanelStyle/PanelStyleBox.tres" id="11_0eig8"]
+
+[sub_resource type="SystemFont" id="SystemFont_lsjbm"]
+font_names = PackedStringArray("Times New Roman")
+font_italic = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_n2c47"]
+font = SubResource("SystemFont_lsjbm")
+font_size = 24
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2s0t2"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b6fso"]
+size = Vector2(344.545, 308.5)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_mcp7r"]
+panorama = ExtResource("1_hfk7p")
+
+[sub_resource type="Sky" id="Sky_8cd2x"]
+sky_material = SubResource("PanoramaSkyMaterial_mcp7r")
+
+[sub_resource type="Environment" id="Environment_apkdq"]
+background_mode = 2
+background_energy_multiplier = 2.0
+sky = SubResource("Sky_8cd2x")
+tonemap_mode = 2
+glow_enabled = true
+glow_normalized = true
+glow_bloom = 0.19
+adjustment_brightness = 1.2
+adjustment_contrast = 1.1
+adjustment_saturation = 1.5
+
+[sub_resource type="Animation" id="Animation_rn4h2"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sol:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sol:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(3.14159, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sol:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_ls1v2"]
+resource_name = "Sun"
+length = 24.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sol:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -6.28319, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 24)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sol:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -6.28319, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 24)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sol:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 24)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a7as1"]
+_data = {
+"RESET": SubResource("Animation_rn4h2"),
+"Sun": SubResource("Animation_ls1v2")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1dqo3"]
+render_priority = 0
+shader = ExtResource("3_fb34p")
+shader_parameter/Offset = -0.216
+shader_parameter/Fade = 0.447
+shader_parameter/Objeto = Vector3(0, 0, -1)
+shader_parameter/Intencidad_Emision = 4
+shader_parameter/Dia = ExtResource("4_or6tp")
+shader_parameter/Noche = ExtResource("6_h5g0u")
+shader_parameter/Especular = ExtResource("5_hi5pq")
+shader_parameter/Normal = ExtResource("7_wlo28")
+
+[sub_resource type="SphereMesh" id="SphereMesh_rroi6"]
+material = SubResource("ShaderMaterial_1dqo3")
+radius = 1.0
+height = 1.95
+
+[sub_resource type="SphereMesh" id="SphereMesh_o4ulh"]
+radius = 1.0
+height = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x4gti"]
+render_priority = 0
+shader = ExtResource("8_qh5fk")
+shader_parameter/Offset = -0.308
+shader_parameter/Fade = 0.663
+shader_parameter/Objeto = Vector3(0, 0, -1)
+shader_parameter/Admosfera_Central = Color(0, 0, 0, 1)
+shader_parameter/Admosfera_Borde = Color(0, 0.463151, 1, 1)
+shader_parameter/energy_emision = 10.0
+shader_parameter/Gradiente = ExtResource("9_yidkc")
+
+[node name="Debris_Track" type="Node3D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SplitContainer" type="SplitContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Control/SplitContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/SplitContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VSplitContainer" type="VSplitContainer" parent="Control/SplitContainer/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="Control/SplitContainer/HSplitContainer/VBoxContainer/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/SplitContainer/HSplitContainer/VBoxContainer/VSplitContainer/Panel"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="Control/SplitContainer/HSplitContainer/VBoxContainer/VSplitContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 6
+text = "Esto es solo texto de prueba, Solo un intento fallido de un interfaz con elementos 3d y de ventanas re escalables"
+label_settings = SubResource("LabelSettings_n2c47")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label" type="Label" parent="Control/SplitContainer/HSplitContainer/VBoxContainer/VSplitContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 6
+text = "Esto es solo texto de prueba, Solo un intento fallido de un interfaz con elementos 3d y de ventanas re escalables"
+label_settings = SubResource("LabelSettings_n2c47")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Panel2" type="Panel" parent="Control/SplitContainer/HSplitContainer/VBoxContainer/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/SplitContainer/HSplitContainer/VBoxContainer/VSplitContainer/Panel2"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="Control/SplitContainer/HSplitContainer/VBoxContainer/VSplitContainer/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 6
+text = "Esto es solo texto de prueba, Solo un intento fallido de un interfaz con elementos 3d y de ventanas re escalables"
+label_settings = SubResource("LabelSettings_n2c47")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label" type="Label" parent="Control/SplitContainer/HSplitContainer/VBoxContainer/VSplitContainer/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 6
+text = "Esto es solo texto de prueba, Solo un intento fallido de un interfaz con elementos 3d y de ventanas re escalables"
+label_settings = SubResource("LabelSettings_n2c47")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/SplitContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VSplitContainer" type="VSplitContainer" parent="Control/SplitContainer/HSplitContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Control/SplitContainer/HSplitContainer/VBoxContainer2/VSplitContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("ViewportTexture_2s0t2")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="Control/SplitContainer/HSplitContainer/VBoxContainer2/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("11_0eig8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/SplitContainer/HSplitContainer/VBoxContainer2/VSplitContainer/Panel"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="Control/SplitContainer/HSplitContainer/VBoxContainer2/VSplitContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 6
+text = "Esto es solo texto de prueba, Solo un intento fallido de un interfaz con elementos 3d y de ventanas re escalables"
+label_settings = SubResource("LabelSettings_n2c47")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label" type="Label" parent="Control/SplitContainer/HSplitContainer/VBoxContainer2/VSplitContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 6
+text = "Esto es solo texto de prueba, Solo un intento fallido de un interfaz con elementos 3d y de ventanas re escalables"
+label_settings = SubResource("LabelSettings_n2c47")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/SplitContainer/HSplitContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Area2D" type="Area2D" parent="Control/SplitContainer/HSplitContainer/CenterContainer"]
+position = Vector2(270, 332)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/SplitContainer/HSplitContainer/CenterContainer/Area2D"]
+scale = Vector2(1.1, 1.2)
+shape = SubResource("RectangleShape2D_b6fso")
+
+[node name="Center" type="Control" parent="Control/SplitContainer/HSplitContainer/CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ReferenceRect" type="ReferenceRect" parent="Control/SplitContainer/HSplitContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(1152, 648)
+
+[node name="Camera_Control" type="Node3D" parent="SubViewport"]
+script = ExtResource("10_7us3y")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport/Camera_Control"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.53297)
+current = true
+
+[node name="Entorno" type="Node" parent="SubViewport"]
+
+[node name="Sol" type="DirectionalLight3D" parent="SubViewport/Entorno"]
+transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 0, 0, 0)
+light_color = Color(1, 0.796078, 0.772549, 1)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="Sun_Position" type="Node3D" parent="SubViewport/Entorno/Sol"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport/Entorno"]
+environment = SubResource("Environment_apkdq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewport/Entorno"]
+libraries = {
+"": SubResource("AnimationLibrary_a7as1")
+}
+autoplay = "Sun"
+
+[node name="Globo terraqueo" type="Node" parent="SubViewport"]
+script = ExtResource("2_ge2x3")
+
+[node name="Tierra" type="MeshInstance3D" parent="SubViewport/Globo terraqueo"]
+mesh = SubResource("SphereMesh_rroi6")
+skeleton = NodePath("../../..")
+
+[node name="Admosfera" type="MeshInstance3D" parent="SubViewport/Globo terraqueo/Tierra"]
+transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, 0)
+mesh = SubResource("SphereMesh_o4ulh")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_x4gti")
+
+[connection signal="mouse_entered" from="Control/SplitContainer/HSplitContainer/CenterContainer/Area2D" to="SubViewport/Camera_Control" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Control/SplitContainer/HSplitContainer/CenterContainer/Area2D" to="SubViewport/Camera_Control" method="_on_area_2d_mouse_exited"]

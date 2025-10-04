@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://d23h3s28daryt"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iw1p8"]
+emission_shape = 3
+emission_box_extents = Vector3(2, 2, 2)
+angle_min = -157.0
+angle_max = 36.5
+velocity_pivot = Vector3(0, 0, 2)
+direction = Vector3(0, 0, 4)
+initial_velocity_min = 47.81
+initial_velocity_max = 126.36
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lv1ra"]
+albedo_color = Color(0.0117647, 0, 0.494118, 1)
+emission_enabled = true
+emission = Color(0, 0.673353, 1, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_na1om"]
+material = SubResource("StandardMaterial3D_lv1ra")
+size = Vector3(0.5, 0.5, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_iw1p8")
+draw_pass_1 = SubResource("BoxMesh_na1om")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 125.675)

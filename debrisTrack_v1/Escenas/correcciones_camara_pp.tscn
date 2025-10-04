@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://xeilbbpb6yxp"]
+
+[ext_resource type="Script" path="res://debrisTrack_v1/Scripts/Camara_primeraPersona.gd" id="1_5q8yi"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8lwuq"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_k48ie"]
+sky_material = SubResource("ProceduralSkyMaterial_8lwuq")
+
+[sub_resource type="Environment" id="Environment_wvoms"]
+background_mode = 2
+sky = SubResource("Sky_k48ie")
+tonemap_mode = 2
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_l0cxb"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_oi1h6"]
+
+[node name="correccion_camara_pp" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wvoms")
+camera_attributes = SubResource("CameraAttributesPractical_l0cxb")
+
+[node name="priemera_persona" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.43463)
+current = true
+script = ExtResource("1_5q8yi")
+rotationSpeed = 0.5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.80223)
+mesh = SubResource("CapsuleMesh_oi1h6")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.42753, 0, -1.80223)
+mesh = SubResource("CapsuleMesh_oi1h6")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95375, 0, -1.80223)
+mesh = SubResource("CapsuleMesh_oi1h6")

@@ -1,0 +1,407 @@
+[gd_scene load_steps=36 format=3 uid="uid://bdrqde2a67hti"]
+
+[ext_resource type="Texture2D" uid="uid://bhf2360tpi0c5" path="res://debrisTrack_v1/IMG_Texture/8k_stars_milky_way.jpg" id="1_gl0lr"]
+[ext_resource type="Script" path="res://debrisTrack_v1/Scripts/Main.gd" id="1_subdt"]
+[ext_resource type="Script" path="res://debrisTrack_v1/Scripts/GloboTerraqueo.gd" id="2_4xfas"]
+[ext_resource type="Shader" uid="uid://dqrpjlvfh7kvx" path="res://debrisTrack_v1/Shader/NightAndDayTest2.tres" id="3_q2dcu"]
+[ext_resource type="Texture2D" uid="uid://b42wqq15ddfbx" path="res://debrisTrack_v1/IMG_Texture/2k_earth_nightmap.png" id="4_lb4tp"]
+[ext_resource type="Texture2D" uid="uid://cruuwqxueul0m" path="res://debrisTrack_v1/IMG_Texture/2k_earth_daymap.png" id="5_whhxr"]
+[ext_resource type="Texture2D" uid="uid://bftyqsgkjaex0" path="res://debrisTrack_v1/IMG_Texture/2k_earth_specular_map.jpg" id="6_te8s2"]
+[ext_resource type="Texture2D" uid="uid://dsgsntgw3o7py" path="res://debrisTrack_v1/IMG_Texture/2k_earth_normal.jpg" id="7_8mf0k"]
+[ext_resource type="Shader" uid="uid://dom8j45x3wfme" path="res://debrisTrack_v1/Shader/admosfera.tres" id="8_cdlpp"]
+[ext_resource type="Texture2D" uid="uid://cip454d6fxm1j" path="res://debrisTrack_v1/Shader/GradientFresnel.tres" id="9_kuxu2"]
+[ext_resource type="StyleBox" uid="uid://b2dlk2isbkcft" path="res://debrisTrack_v1/HUD/ButtonStyle/ButtonBoxStyle_Hover.tres" id="10_xwnqo"]
+[ext_resource type="StyleBox" uid="uid://51gmydekc6dq" path="res://debrisTrack_v1/HUD/ButtonStyle/ButtonBoxStyle_Press.tres" id="11_7glcg"]
+[ext_resource type="StyleBox" uid="uid://c471wp1bjp227" path="res://debrisTrack_v1/HUD/ButtonStyle/ButtonBoxStyle_Normal.tres" id="11_i16pw"]
+[ext_resource type="Texture2D" uid="uid://d3sri6k1ca85c" path="res://debrisTrack_v1/HUD/GrapicsIcon/meteor_detailedLarge.png" id="14_2th0n"]
+[ext_resource type="Texture2D" uid="uid://cav1idvssnnd8" path="res://debrisTrack_v1/HUD/GrapicsIcon/Outline Cross Air/crosshair134.png" id="15_2xxkr"]
+[ext_resource type="Texture2D" uid="uid://rpvlbbk8djxl" path="res://debrisTrack_v1/HUD/GrapicsIcon/station_C.png" id="16_yckws"]
+[ext_resource type="Texture2D" uid="uid://cmpn0oyf4n1hw" path="res://debrisTrack_v1/HUD/GrapicsIcon/icon_exclamationSmall.png" id="17_ta0ko"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_x54ln"]
+panorama = ExtResource("1_gl0lr")
+
+[sub_resource type="Sky" id="Sky_ybvhm"]
+sky_material = SubResource("PanoramaSkyMaterial_x54ln")
+
+[sub_resource type="Environment" id="Environment_umgfu"]
+background_mode = 2
+sky = SubResource("Sky_ybvhm")
+tonemap_mode = 2
+glow_enabled = true
+glow_normalized = true
+glow_bloom = 0.19
+
+[sub_resource type="Animation" id="Animation_ls1v2"]
+resource_name = "Sun"
+length = 24.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sol:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -6.28319, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 24)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sol:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -6.28319, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 24)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sol:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 24)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a7as1"]
+_data = {
+"Sun": SubResource("Animation_ls1v2")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k5ssu"]
+render_priority = 0
+shader = ExtResource("3_q2dcu")
+shader_parameter/Offset = -0.216
+shader_parameter/Fade = 0.447
+shader_parameter/Objeto = Vector3(0, 0, -1)
+shader_parameter/Intencidad_Emision = 4
+shader_parameter/Dia = ExtResource("5_whhxr")
+shader_parameter/Noche = ExtResource("4_lb4tp")
+shader_parameter/Especular = ExtResource("6_te8s2")
+shader_parameter/Normal = ExtResource("7_8mf0k")
+
+[sub_resource type="SphereMesh" id="SphereMesh_tr401"]
+material = SubResource("ShaderMaterial_k5ssu")
+radius = 1.0
+height = 1.95
+
+[sub_resource type="SphereMesh" id="SphereMesh_kw4bh"]
+radius = 1.0
+height = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yv333"]
+render_priority = 0
+shader = ExtResource("8_cdlpp")
+shader_parameter/Offset = -0.308
+shader_parameter/Fade = 0.663
+shader_parameter/Objeto = Vector3(0, 0, -1)
+shader_parameter/Admosfera_Central = Color(0, 0, 0, 1)
+shader_parameter/Admosfera_Borde = Color(0, 0.463151, 1, 1)
+shader_parameter/energy_emision = 10.0
+shader_parameter/Gradiente = ExtResource("9_kuxu2")
+
+[sub_resource type="Animation" id="Animation_t3l4x"]
+resource_name = "TierraGiro"
+length = 24.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Space/Tierra:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 24)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Space/Tierra:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 6.28319, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 24)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Space/Tierra:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 24)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3weso"]
+_data = {
+"TierraGiro": SubResource("Animation_t3l4x")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pwgcv"]
+emission_shape_scale = Vector3(4, 4, 4)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = -157.0
+angle_max = 36.5
+direction = Vector3(0, 0, 1)
+spread = 113.571
+initial_velocity_min = 27.0
+initial_velocity_max = 208.39
+gravity = Vector3(0, 0, 0)
+scale_max = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g8yy3"]
+albedo_color = Color(0.0117647, 0, 0.494118, 1)
+emission_enabled = true
+emission = Color(0, 0.673353, 1, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_24ufc"]
+material = SubResource("StandardMaterial3D_g8yy3")
+size = Vector3(0.5, 0.5, 1)
+
+[sub_resource type="Animation" id="Animation_w507y"]
+resource_name = "Fade_In"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Trancition:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1ni8m"]
+resource_name = "Fade_Out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Trancition:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vbyyr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Trancition:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6mfld"]
+_data = {
+"Fade_In": SubResource("Animation_w507y"),
+"Fade_Out": SubResource("Animation_1ni8m"),
+"RESET": SubResource("Animation_vbyyr")
+}
+
+[node name="Main" type="Node3D"]
+
+[node name="Entorno3d" type="Node" parent="."]
+
+[node name="Entorno" type="Node" parent="Entorno3d"]
+
+[node name="Sol" type="DirectionalLight3D" parent="Entorno3d/Entorno"]
+light_color = Color(1, 0.796078, 0.772549, 1)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="Sun_Position" type="Node3D" parent="Entorno3d/Entorno/Sol"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="ajustesEntorno" type="WorldEnvironment" parent="Entorno3d/Entorno"]
+environment = SubResource("Environment_umgfu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Entorno3d/Entorno"]
+libraries = {
+"": SubResource("AnimationLibrary_a7as1")
+}
+autoplay = "Sun"
+
+[node name="Globo terraqueo" type="Node" parent="Entorno3d"]
+script = ExtResource("2_4xfas")
+
+[node name="Space" type="Node3D" parent="Entorno3d/Globo terraqueo"]
+
+[node name="Tierra" type="MeshInstance3D" parent="Entorno3d/Globo terraqueo/Space"]
+mesh = SubResource("SphereMesh_tr401")
+skeleton = NodePath("../../..")
+
+[node name="Admosfera" type="MeshInstance3D" parent="Entorno3d/Globo terraqueo/Space/Tierra"]
+transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, 0)
+mesh = SubResource("SphereMesh_kw4bh")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_yv333")
+
+[node name="tierraAnim" type="AnimationPlayer" parent="Entorno3d/Globo terraqueo"]
+libraries = {
+"": SubResource("AnimationLibrary_3weso")
+}
+autoplay = "TierraGiro"
+
+[node name="Particle" type="Node3D" parent="Entorno3d/Globo terraqueo"]
+transform = Transform3D(0.585093, -0.364723, -0.724323, -0.501752, 0.538878, -0.67665, 0.637111, 0.759334, 0.132293, 0, 0, 0)
+
+[node name="estelas" type="GPUParticles3D" parent="Entorno3d/Globo terraqueo/Particle"]
+transform = Transform3D(0.472472, 0.336771, 0.814466, -0.580859, 0.814002, 0.000376582, -0.662851, -0.473268, 0.580212, -207.231, 41.8356, 8.98316)
+amount = 100
+lifetime = 8.0
+process_material = SubResource("ParticleProcessMaterial_pwgcv")
+draw_pass_1 = SubResource("BoxMesh_24ufc")
+
+[node name="Camara" type="Camera3D" parent="Entorno3d"]
+transform = Transform3D(0.145589, -0.100811, 0.984196, 0.56928, 0.822144, -1.16384e-07, -0.809151, 0.560283, 0.177085, 2.76043, 1.02245, -0.302314)
+current = true
+fov = 47.0
+
+[node name="Select_Option" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_subdt")
+
+[node name="ButonConteiner" type="HBoxContainer" parent="Select_Option"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VSeparator" type="VSeparator" parent="Select_Option/ButonConteiner"]
+clip_children = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.05
+
+[node name="Button" type="VBoxContainer" parent="Select_Option/ButonConteiner"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Fits_data" type="Button" parent="Select_Option/ButonConteiner/Button"]
+layout_mode = 2
+tooltip_text = "Cree una base de datos CSV para 
+registrar los debris que se van a 
+incluir en la simulacion"
+focus_mode = 0
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = ExtResource("10_xwnqo")
+theme_override_styles/pressed = ExtResource("11_7glcg")
+theme_override_styles/normal = ExtResource("11_i16pw")
+text = "Insertar datos de los debris"
+icon = ExtResource("14_2th0n")
+
+[node name="Data_baseCheck" type="Button" parent="Select_Option/ButonConteiner/Button"]
+layout_mode = 2
+tooltip_text = "Visor y ordenador
+de documentos CSV"
+focus_mode = 0
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = ExtResource("10_xwnqo")
+theme_override_styles/pressed = ExtResource("11_7glcg")
+theme_override_styles/normal = ExtResource("11_i16pw")
+text = "Visualizador de CSV"
+icon = ExtResource("15_2xxkr")
+
+[node name="Simulation" type="Button" parent="Select_Option/ButonConteiner/Button"]
+layout_mode = 2
+tooltip_text = "Simulacion del Globo 
+terraqueo y Satelites"
+focus_mode = 0
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = ExtResource("10_xwnqo")
+theme_override_styles/pressed = ExtResource("11_7glcg")
+theme_override_styles/normal = ExtResource("11_i16pw")
+text = "Iniciar simulacion"
+icon = ExtResource("16_yckws")
+
+[node name="Problemas" type="Button" parent="Select_Option/ButonConteiner/Button"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = ExtResource("10_xwnqo")
+theme_override_styles/pressed = ExtResource("11_7glcg")
+theme_override_styles/normal = ExtResource("11_i16pw")
+text = "Problemas del programa"
+icon = ExtResource("17_ta0ko")
+
+[node name="VSeparator2" type="VSeparator" parent="Select_Option/ButonConteiner"]
+clip_children = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.05
+
+[node name="LinkButton" type="LinkButton" parent="Select_Option"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -49.0
+offset_top = -33.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Info"
+underline = 1
+uri = "https://docs.godotengine.org/en/4.2/tutorials/plugins/running_code_in_the_editor.html"
+structured_text_bidi_override = 1
+
+[node name="Trancition" type="ColorRect" parent="Select_Option"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Select_Option"]
+libraries = {
+"": SubResource("AnimationLibrary_6mfld")
+}
+
+[connection signal="pressed" from="Select_Option/ButonConteiner/Button/Fits_data" to="Select_Option" method="_on_fits_data_pressed"]
+[connection signal="pressed" from="Select_Option/ButonConteiner/Button/Data_baseCheck" to="Select_Option" method="_on_data_base_check_pressed"]
+[connection signal="pressed" from="Select_Option/ButonConteiner/Button/Simulation" to="Select_Option" method="_on_simulation_pressed"]
+[connection signal="pressed" from="Select_Option/ButonConteiner/Button/Problemas" to="Select_Option" method="_on_problemas_pressed"]
+[connection signal="animation_finished" from="Select_Option/AnimationPlayer" to="Select_Option" method="_on_animation_player_animation_finished"]

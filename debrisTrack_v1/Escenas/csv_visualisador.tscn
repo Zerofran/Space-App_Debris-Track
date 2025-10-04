@@ -1,0 +1,196 @@
+[gd_scene load_steps=9 format=3 uid="uid://bho6havtwr3bv"]
+
+[ext_resource type="Script" path="res://debrisTrack_v1/Scripts/csv_visualisador.gd" id="1_xdmmr"]
+[ext_resource type="LabelSettings" uid="uid://cx78qrpwxdn5b" path="res://debrisTrack_v1/Extras/label_set_font2.tres" id="2_i5bcs"]
+[ext_resource type="Texture2D" uid="uid://cmuta3wwf88ct" path="res://debrisTrack_v1/HUD/HUD Icon/zoom.png" id="2_xlhrm"]
+[ext_resource type="Texture2D" uid="uid://boa8lwv3krwd0" path="res://debrisTrack_v1/HUD/HUD Icon/leaderboardsSimple.png" id="3_4hh73"]
+[ext_resource type="Texture2D" uid="uid://cqh2rynthwjhq" path="res://debrisTrack_v1/HUD/HUD Icon/plus.png" id="3_t3k65"]
+[ext_resource type="Texture2D" uid="uid://bmyuhtfljlkri" path="res://debrisTrack_v1/HUD/HUD Icon/save.png" id="4_m1aip"]
+[ext_resource type="Texture2D" uid="uid://brrshmhrr7x61" path="res://debrisTrack_v1/HUD/HUD Icon/minus.png" id="4_wgyxb"]
+[ext_resource type="Texture2D" uid="uid://c13bsqgbjpv43" path="res://debrisTrack_v1/HUD/HUD Icon/return.png" id="5_haj7w"]
+
+[node name="CSV visualisador" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xdmmr")
+
+[node name="Fondo" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.501961, 0.501961, 0.501961, 1)
+
+[node name="Contenedor" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VSeparator" type="VSeparator" parent="Contenedor"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.02
+
+[node name="Contenedor" type="VBoxContainer" parent="Contenedor"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="HSeparator2" type="HSeparator" parent="Contenedor/Contenedor"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.05
+
+[node name="ajustes" type="HBoxContainer" parent="Contenedor/Contenedor"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+alignment = 1
+
+[node name="Select_data" type="OptionButton" parent="Contenedor/Contenedor/ajustes"]
+custom_minimum_size = Vector2(190, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Selecciona una base de datos"
+theme_override_font_sizes/font_size = 18
+alignment = 1
+autowrap_mode = 2
+selected = 0
+item_count = 1
+popup/item_0/text = "----Select all----"
+popup/item_0/separator = true
+
+[node name="Ok" type="Button" parent="Contenedor/Contenedor/ajustes"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Iniciar la Extraccion de la informacion del CSV"
+text = "Inspeccionar"
+icon = ExtResource("2_xlhrm")
+expand_icon = true
+
+[node name="NuevaFila" type="Button" parent="Contenedor/Contenedor/ajustes"]
+modulate = Color(0.0138767, 0.487687, 1, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Agrega una
+fila en ultima
+posición"
+text = "Nueva
+Fila"
+icon = ExtResource("3_t3k65")
+expand_icon = true
+
+[node name="QuitarFila" type="Button" parent="Contenedor/Contenedor/ajustes"]
+modulate = Color(1, 0.379635, 0.209088, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Quita la
+ultima fila"
+text = "Quitar
+Fila"
+icon = ExtResource("4_wgyxb")
+expand_icon = true
+
+[node name="Organizar" type="Button" parent="Contenedor/Contenedor/ajustes"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Este boton permite reorganizar los datos por orden cronologico 
+usando la fecha juliana, es un precalculo antes de la simulacion"
+text = "Organizar"
+icon = ExtResource("3_4hh73")
+icon_alignment = 2
+expand_icon = true
+
+[node name="Guardar" type="Button" parent="Contenedor/Contenedor/ajustes"]
+modulate = Color(0.243016, 1, 0.297848, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Si alguno de los datos es cambiado se le recomienda guardar 
+para no perder los cambios"
+text = "Guardar
+"
+icon = ExtResource("4_m1aip")
+icon_alignment = 2
+expand_icon = true
+
+[node name="GuardarComo" type="Button" parent="Contenedor/Contenedor/ajustes"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Guardar
+Como"
+icon = ExtResource("4_m1aip")
+icon_alignment = 2
+expand_icon = true
+
+[node name="Volver" type="Button" parent="Contenedor/Contenedor/ajustes"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+text = "Volver
+"
+icon = ExtResource("5_haj7w")
+icon_alignment = 2
+
+[node name="HSeparator" type="HSeparator" parent="Contenedor/Contenedor"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.05
+
+[node name="visualizar" type="ScrollContainer" parent="Contenedor/Contenedor"]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+scroll_deadzone = 100
+
+[node name="ver_datos" type="VBoxContainer" parent="Contenedor/Contenedor/visualizar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+
+[node name="Aviso" type="Label" parent="Contenedor/Contenedor/visualizar/ver_datos"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Los datos apareseran aqui..."
+label_settings = ExtResource("2_i5bcs")
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="Contenedor/Contenedor"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.03
+
+[node name="VSeparator2" type="VSeparator" parent="Contenedor"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.02
+
+[node name="GuardarComo" type="Node" parent="."]
+
+[node name="FileDialog" type="FileDialog" parent="GuardarComo"]
+title = "guardar archivo"
+initial_position = 1
+size = Vector2i(590, 328)
+ok_button_text = "Guardar"
+dialog_hide_on_ok = true
+cancel_button_text = "Cancelar"
+access = 1
+filters = PackedStringArray("*.csv")
+
+[connection signal="pressed" from="Contenedor/Contenedor/ajustes/Ok" to="." method="_on_ok_pressed"]
+[connection signal="pressed" from="Contenedor/Contenedor/ajustes/NuevaFila" to="." method="_on_nueva_fila_pressed"]
+[connection signal="pressed" from="Contenedor/Contenedor/ajustes/QuitarFila" to="." method="_on_quitar_fila_pressed"]
+[connection signal="pressed" from="Contenedor/Contenedor/ajustes/Organizar" to="." method="_on_organizar_pressed"]
+[connection signal="pressed" from="Contenedor/Contenedor/ajustes/Guardar" to="." method="_on_guardar_pressed"]
+[connection signal="pressed" from="Contenedor/Contenedor/ajustes/GuardarComo" to="." method="_on_guardar_como_pressed"]
+[connection signal="pressed" from="Contenedor/Contenedor/ajustes/Volver" to="." method="_on_volver_pressed"]
+[connection signal="confirmed" from="GuardarComo/FileDialog" to="." method="_on_file_dialog_confirmed"]

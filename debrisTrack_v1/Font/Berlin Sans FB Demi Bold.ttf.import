@@ -1,0 +1,34 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://djbpfbst4yqwg"
+path="res://.godot/imported/Berlin Sans FB Demi Bold.ttf-a27be40fa1f3ad5e5c0433d783c8f395.fontdata"
+
+[deps]
+
+source_file="res://debrisTrack_v1/Font/Berlin Sans FB Demi Bold.ttf"
+dest_files=["res://.godot/imported/Berlin Sans FB Demi Bold.ttf-a27be40fa1f3ad5e5c0433d783c8f395.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=false
+disable_embedded_bitmaps=true
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+hinting=1
+subpixel_positioning=1
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[]
+language_support={}
+script_support={}
+opentype_features={}

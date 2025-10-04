@@ -1,0 +1,29 @@
+[gd_scene load_steps=8 format=3 uid="uid://d3emsyp7lo8f8"]
+
+[ext_resource type="Texture2D" uid="uid://d3sri6k1ca85c" path="res://debrisTrack_v1/HUD/GrapicsIcon/meteor_detailedLarge.png" id="1_iqqb2"]
+[ext_resource type="Script" path="res://debrisTrack_v1/Scripts/body_visual.gd" id="1_j6i1v"]
+[ext_resource type="Texture2D" uid="uid://bmo63r7d18gv3" path="res://debrisTrack_v1/HUD/GrapicsIcon/meteor_detailedSmall.png" id="3_cprm7"]
+[ext_resource type="Texture2D" uid="uid://d1m540vj501o1" path="res://debrisTrack_v1/HUD/GrapicsIcon/icon_plusSmall.png" id="4_btt0u"]
+[ext_resource type="Texture2D" uid="uid://djsuif28qkiat" path="res://debrisTrack_v1/HUD/GrapicsIcon/satellite_C.png" id="4_galhg"]
+[ext_resource type="Texture2D" uid="uid://rpvlbbk8djxl" path="res://debrisTrack_v1/HUD/GrapicsIcon/station_C.png" id="6_aiog4"]
+[ext_resource type="Texture2D" uid="uid://cmpn0oyf4n1hw" path="res://debrisTrack_v1/HUD/GrapicsIcon/icon_exclamationSmall.png" id="7_16sgf"]
+
+[node name="BodyVisual" type="Node3D"]
+script = ExtResource("1_j6i1v")
+Object_Type = 2
+Grande = true
+DebrisRockIcon = Array[Texture]([ExtResource("1_iqqb2"), ExtResource("3_cprm7")])
+FragmentIcon = Array[Texture]([ExtResource("4_btt0u"), ExtResource("4_btt0u")])
+SateliteIcon = Array[Texture]([ExtResource("6_aiog4"), ExtResource("4_galhg")])
+Desconosido = ExtResource("7_16sgf")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+billboard = 1
+texture = ExtResource("6_aiog4")
+
+[node name="Texto" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0607043, 0)
+pixel_size = 0.0008
+billboard = 1
+text = "Texto"

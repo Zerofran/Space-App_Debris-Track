@@ -1,0 +1,577 @@
+[gd_scene load_steps=15 format=3 uid="uid://db1l0idji1434"]
+
+[ext_resource type="LabelSettings" uid="uid://drdy5fbicno0u" path="res://debrisTrack_v1/Extras/label_set_font.tres" id="1_30sqk"]
+[ext_resource type="Script" path="res://debrisTrack_v1/Scripts/fits_saveData.gd" id="1_nb0po"]
+[ext_resource type="Texture2D" uid="uid://djsuif28qkiat" path="res://debrisTrack_v1/HUD/GrapicsIcon/satellite_C.png" id="3_j482o"]
+[ext_resource type="Texture2D" uid="uid://d3sri6k1ca85c" path="res://debrisTrack_v1/HUD/GrapicsIcon/meteor_detailedLarge.png" id="3_qufjd"]
+[ext_resource type="Texture2D" uid="uid://bmyuhtfljlkri" path="res://debrisTrack_v1/HUD/HUD Icon/save.png" id="3_t4j7n"]
+[ext_resource type="Texture2D" uid="uid://c13bsqgbjpv43" path="res://debrisTrack_v1/HUD/HUD Icon/return.png" id="4_h4cvc"]
+[ext_resource type="Script" path="res://debrisTrack_v1/Scripts/RestriccionInput.gd" id="5_ks7xy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mnbpd"]
+font_size = 28
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="InputEventKey" id="InputEventKey_pddrd"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_yesl1"]
+events = [SubResource("InputEventKey_pddrd")]
+
+[sub_resource type="Animation" id="Animation_w507y"]
+resource_name = "Fade_In"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Trancition:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1ni8m"]
+resource_name = "Fade_Out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Trancition:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vbyyr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Trancition:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6mfld"]
+_data = {
+"Fade_In": SubResource("Animation_w507y"),
+"Fade_Out": SubResource("Animation_1ni8m"),
+"RESET": SubResource("Animation_vbyyr")
+}
+
+[node name="Fits_Data" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nb0po")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Fondo" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.501961, 0.501961, 0.501961, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "----Inserte datos sobre el debri encontrado----"
+label_settings = SubResource("LabelSettings_mnbpd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.03
+
+[node name="UI_Hbox" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="VSeparator2" type="VSeparator" parent="VBoxContainer/UI_Hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.01
+
+[node name="Imput_container" type="VBoxContainer" parent="VBoxContainer/UI_Hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="Campo1" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container"]
+layout_mode = 2
+text = "----Cree una nueva base de datos----"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Basedatos_Container" type="HBoxContainer" parent="VBoxContainer/UI_Hbox/Imput_container"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.5
+
+[node name="baseDatos_input" type="LineEdit" parent="VBoxContainer/UI_Hbox/Imput_container/Basedatos_Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "My base de datos"
+alignment = 1
+max_length = 14
+clear_button_enabled = true
+caret_blink = true
+text_direction = 1
+
+[node name="Ok" type="Button" parent="VBoxContainer/UI_Hbox/Imput_container/Basedatos_Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+shortcut = SubResource("Shortcut_yesl1")
+text = "OK"
+
+[node name="Campo2" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container"]
+layout_mode = 2
+text = "----Elija una base de datos----"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Select_data" type="OptionButton" parent="VBoxContainer/UI_Hbox/Imput_container"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.5
+theme_override_font_sizes/font_size = 18
+alignment = 1
+autowrap_mode = 2
+expand_icon = true
+selected = 0
+item_count = 1
+popup/item_0/text = "----Select Data----"
+popup/item_0/separator = true
+
+[node name="Select_Type" type="OptionButton" parent="VBoxContainer/UI_Hbox/Imput_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_font_sizes/font_size = 18
+alignment = 1
+autowrap_mode = 2
+expand_icon = true
+selected = 0
+item_count = 3
+popup/item_0/text = "----Seleccione el tipo de objeto----"
+popup/item_0/separator = true
+popup/item_1/text = "debris"
+popup/item_1/icon = ExtResource("3_qufjd")
+popup/item_1/id = 1
+popup/item_2/text = "satelite"
+popup/item_2/icon = ExtResource("3_j482o")
+popup/item_2/id = 2
+
+[node name="Campo3" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container"]
+layout_mode = 2
+text = "----Fecha de avistamiento en el .Fits----"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Fecha_avistamiento" type="HBoxContainer" parent="VBoxContainer/UI_Hbox/Imput_container"]
+layout_mode = 2
+
+[node name="Dia" type="LineEdit" parent="VBoxContainer/UI_Hbox/Imput_container/Fecha_avistamiento"]
+layout_mode = 2
+placeholder_text = "Dia"
+alignment = 1
+max_length = 2
+virtual_keyboard_type = 2
+caret_blink = true
+script = ExtResource("5_ks7xy")
+
+[node name="fleca" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container/Fecha_avistamiento"]
+layout_mode = 2
+text = "/"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Mes" type="LineEdit" parent="VBoxContainer/UI_Hbox/Imput_container/Fecha_avistamiento"]
+layout_mode = 2
+placeholder_text = "Mes"
+alignment = 1
+max_length = 2
+virtual_keyboard_type = 2
+caret_blink = true
+script = ExtResource("5_ks7xy")
+
+[node name="fleca2" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container/Fecha_avistamiento"]
+layout_mode = 2
+text = "/"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Año" type="LineEdit" parent="VBoxContainer/UI_Hbox/Imput_container/Fecha_avistamiento"]
+layout_mode = 2
+placeholder_text = "Año"
+alignment = 1
+max_length = 4
+virtual_keyboard_type = 2
+caret_blink = true
+script = ExtResource("5_ks7xy")
+
+[node name="FechaJuliana" type="LineEdit" parent="VBoxContainer/UI_Hbox/Imput_container/Fecha_avistamiento"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Fecha juliana "
+alignment = 1
+virtual_keyboard_type = 2
+clear_button_enabled = true
+caret_blink = true
+caret_mid_grapheme = true
+language = "es"
+script = ExtResource("5_ks7xy")
+
+[node name="format_date" type="CheckBox" parent="VBoxContainer/UI_Hbox/Imput_container/Fecha_avistamiento"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_stretch_ratio = 0.0
+text = "Formato juliano"
+alignment = 2
+
+[node name="Campo4" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container"]
+layout_mode = 2
+text = "----Hora de avistamiento en el .Fits----"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Tiempo_avistamiento" type="HBoxContainer" parent="VBoxContainer/UI_Hbox/Imput_container"]
+layout_mode = 2
+
+[node name="Horas" type="LineEdit" parent="VBoxContainer/UI_Hbox/Imput_container/Tiempo_avistamiento"]
+layout_mode = 2
+placeholder_text = "13"
+alignment = 1
+caret_blink = true
+script = ExtResource("5_ks7xy")
+
+[node name="Label" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container/Tiempo_avistamiento"]
+layout_mode = 2
+text = ":"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Minutos" type="LineEdit" parent="VBoxContainer/UI_Hbox/Imput_container/Tiempo_avistamiento"]
+layout_mode = 2
+placeholder_text = "45"
+alignment = 1
+caret_blink = true
+script = ExtResource("5_ks7xy")
+
+[node name="Label2" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container/Tiempo_avistamiento"]
+layout_mode = 2
+text = ":"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Segundos" type="LineEdit" parent="VBoxContainer/UI_Hbox/Imput_container/Tiempo_avistamiento"]
+layout_mode = 2
+placeholder_text = "24"
+alignment = 1
+script = ExtResource("5_ks7xy")
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/UI_Hbox/Imput_container/Tiempo_avistamiento"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container/Tiempo_avistamiento"]
+layout_mode = 2
+text = "Sistema UTC"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Label" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container"]
+layout_mode = 2
+text = "/------posicion celestial del debri------/"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Sub_campo1" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container"]
+layout_mode = 2
+text = "Ascencion recta [Horas: minutos: segundos]"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Ascencion_recta" type="HBoxContainer" parent="VBoxContainer/UI_Hbox/Imput_container"]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container/Ascencion_recta"]
+layout_mode = 2
+text = "Alfa"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Horas" type="LineEdit" parent="VBoxContainer/UI_Hbox/Imput_container/Ascencion_recta"]
+layout_mode = 2
+placeholder_text = "6"
+alignment = 2
+script = ExtResource("5_ks7xy")
+
+[node name="Label" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container/Ascencion_recta"]
+layout_mode = 2
+text = ":"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Minutos" type="LineEdit" parent="VBoxContainer/UI_Hbox/Imput_container/Ascencion_recta"]
+layout_mode = 2
+placeholder_text = "8"
+alignment = 1
+script = ExtResource("5_ks7xy")
+
+[node name="Label2" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container/Ascencion_recta"]
+layout_mode = 2
+text = ":"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Segundos" type="LineEdit" parent="VBoxContainer/UI_Hbox/Imput_container/Ascencion_recta"]
+layout_mode = 2
+placeholder_text = "23.0149"
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/UI_Hbox/Imput_container/Ascencion_recta"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container/Ascencion_recta"]
+layout_mode = 2
+text = "Inicial"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Ascencion_recta2" type="HBoxContainer" parent="VBoxContainer/UI_Hbox/Imput_container"]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container/Ascencion_recta2"]
+layout_mode = 2
+text = "Alfa"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Horas" type="LineEdit" parent="VBoxContainer/UI_Hbox/Imput_container/Ascencion_recta2"]
+layout_mode = 2
+placeholder_text = "6"
+alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container/Ascencion_recta2"]
+layout_mode = 2
+text = ":"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Minutos" type="LineEdit" parent="VBoxContainer/UI_Hbox/Imput_container/Ascencion_recta2"]
+layout_mode = 2
+placeholder_text = "45"
+alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container/Ascencion_recta2"]
+layout_mode = 2
+text = ":"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Segundos" type="LineEdit" parent="VBoxContainer/UI_Hbox/Imput_container/Ascencion_recta2"]
+layout_mode = 2
+placeholder_text = "24"
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/UI_Hbox/Imput_container/Ascencion_recta2"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container/Ascencion_recta2"]
+layout_mode = 2
+text = "Final"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Sub_campo2" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container"]
+layout_mode = 2
+text = "Declinacion [Grados: minutos: segundos]"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Declinacion" type="HBoxContainer" parent="VBoxContainer/UI_Hbox/Imput_container"]
+layout_mode = 2
+
+[node name="Gamma" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container/Declinacion"]
+layout_mode = 2
+text = "Gamma"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Grados" type="LineEdit" parent="VBoxContainer/UI_Hbox/Imput_container/Declinacion"]
+layout_mode = 2
+placeholder_text = "-55"
+alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container/Declinacion"]
+layout_mode = 2
+text = ":"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Minutos" type="LineEdit" parent="VBoxContainer/UI_Hbox/Imput_container/Declinacion"]
+layout_mode = 2
+placeholder_text = "34"
+alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container/Declinacion"]
+layout_mode = 2
+text = ":"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Segundos" type="LineEdit" parent="VBoxContainer/UI_Hbox/Imput_container/Declinacion"]
+layout_mode = 2
+placeholder_text = "46.603"
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/UI_Hbox/Imput_container/Declinacion"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container/Declinacion"]
+layout_mode = 2
+text = "Inicial"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Declinacion2" type="HBoxContainer" parent="VBoxContainer/UI_Hbox/Imput_container"]
+layout_mode = 2
+
+[node name="Gamma" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container/Declinacion2"]
+layout_mode = 2
+text = "Gamma"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Grados" type="LineEdit" parent="VBoxContainer/UI_Hbox/Imput_container/Declinacion2"]
+layout_mode = 2
+placeholder_text = "-55"
+alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container/Declinacion2"]
+layout_mode = 2
+text = ":"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Minutos" type="LineEdit" parent="VBoxContainer/UI_Hbox/Imput_container/Declinacion2"]
+layout_mode = 2
+placeholder_text = "42"
+alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container/Declinacion2"]
+layout_mode = 2
+text = ":"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Segundos" type="LineEdit" parent="VBoxContainer/UI_Hbox/Imput_container/Declinacion2"]
+layout_mode = 2
+placeholder_text = "47.05"
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/UI_Hbox/Imput_container/Declinacion2"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container/Declinacion2"]
+layout_mode = 2
+text = "Final"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Label2" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container"]
+layout_mode = 2
+text = "---Tiempo de opturacion de la camara---
+"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Exposicion_time" type="HBoxContainer" parent="VBoxContainer/UI_Hbox/Imput_container"]
+layout_mode = 2
+
+[node name="Minutos" type="LineEdit" parent="VBoxContainer/UI_Hbox/Imput_container/Exposicion_time"]
+layout_mode = 2
+text = "0"
+placeholder_text = "min"
+
+[node name="Label" type="Label" parent="VBoxContainer/UI_Hbox/Imput_container/Exposicion_time"]
+layout_mode = 2
+text = ":"
+label_settings = ExtResource("1_30sqk")
+
+[node name="Segundos" type="LineEdit" parent="VBoxContainer/UI_Hbox/Imput_container/Exposicion_time"]
+layout_mode = 2
+placeholder_text = "s"
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/UI_Hbox/Imput_container/Exposicion_time"]
+layout_mode = 2
+
+[node name="VSeparator4" type="VSeparator" parent="VBoxContainer/UI_Hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.01
+
+[node name="Output_container" type="VBoxContainer" parent="VBoxContainer/UI_Hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="Extraer_info" type="Button" parent="VBoxContainer/UI_Hbox/Output_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+text = "Extraer informacion"
+icon = ExtResource("3_t4j7n")
+icon_alignment = 2
+
+[node name="Output" type="RichTextLabel" parent="VBoxContainer/UI_Hbox/Output_container"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Aqui van los calculos resultantes de los datos insertados"
+
+[node name="Volver" type="Button" parent="VBoxContainer/UI_Hbox/Output_container"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Volver"
+icon = ExtResource("4_h4cvc")
+icon_alignment = 2
+
+[node name="VSeparator3" type="VSeparator" parent="VBoxContainer/UI_Hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.01
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.03
+
+[node name="Trancition" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6mfld")
+}
+
+[connection signal="text_changed" from="VBoxContainer/UI_Hbox/Imput_container/Basedatos_Container/baseDatos_input" to="VBoxContainer/UI_Hbox/Imput_container/Basedatos_Container/baseDatos_input" method="_on_text_changed"]
+[connection signal="pressed" from="VBoxContainer/UI_Hbox/Imput_container/Basedatos_Container/Ok" to="." method="_on_ok_pressed"]
+[connection signal="pressed" from="VBoxContainer/UI_Hbox/Imput_container/Fecha_avistamiento/format_date" to="." method="_on_format_date_pressed"]
+[connection signal="pressed" from="VBoxContainer/UI_Hbox/Output_container/Extraer_info" to="." method="_on_extraer_info_pressed"]
+[connection signal="pressed" from="VBoxContainer/UI_Hbox/Output_container/Volver" to="." method="_on_volver_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

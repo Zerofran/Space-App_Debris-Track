@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bv7nwxr5ufnow"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ahq4h"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_6tvyg"]
+sky_material = SubResource("ProceduralSkyMaterial_ahq4h")
+
+[sub_resource type="Environment" id="Environment_52t58"]
+background_mode = 2
+sky = SubResource("Sky_6tvyg")
+tonemap_mode = 2
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gqnc4"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_52t58")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.819627, 0)
+linear_velocity = Vector3(0, -10, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("CapsuleMesh_gqnc4")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.67192)

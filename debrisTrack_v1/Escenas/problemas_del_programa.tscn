@@ -1,0 +1,142 @@
+[gd_scene load_steps=7 format=3 uid="uid://8gvv8337fl22"]
+
+[ext_resource type="LabelSettings" uid="uid://cx78qrpwxdn5b" path="res://debrisTrack_v1/Extras/label_set_font2.tres" id="1_3nt2j"]
+[ext_resource type="Texture2D" uid="uid://cy4xk6ulrqooh" path="res://IMG/HuD.png" id="1_4fbyd"]
+[ext_resource type="Script" path="res://debrisTrack_v1/Scripts/problemas_del_programa.gd" id="1_55kpq"]
+
+[sub_resource type="Animation" id="Animation_1m1po"]
+resource_name = "HUD"
+length = 30.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HuD:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HuD2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_xejcd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HuD:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HuD2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ylr7d"]
+_data = {
+"HUD": SubResource("Animation_1m1po"),
+"RESET": SubResource("Animation_xejcd")
+}
+
+[node name="Problemas del programa" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_55kpq")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HuD" type="Sprite2D" parent="Control"]
+position = Vector2(-421, -267)
+rotation = 6.28319
+scale = Vector2(2, 2)
+texture = ExtResource("1_4fbyd")
+
+[node name="HuD2" type="Sprite2D" parent="Control"]
+position = Vector2(-421, -267)
+rotation = 6.28319
+scale = Vector2(0.62, 0.62)
+texture = ExtResource("1_4fbyd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
+libraries = {
+"": SubResource("AnimationLibrary_ylr7d")
+}
+autoplay = "HUD"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -495.0
+offset_top = -417.0
+offset_right = 569.0
+offset_bottom = -198.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Este software esta incompleto y como tal tiene algunos errores o zonas sin terminar.
+
+1. error al registrar un fits, la convercion a fecha juliana da problemas, se recomienda usar el formato gregoriano mientras se soluciona.  [Problema solucionado]
+2.cargar base de datos, no se recarga en tiempo real si no que se carga la pestaña completa.
+3.la simulacion fisica 3D de los cuerpos aun no se puede usar."
+label_settings = ExtResource("1_3nt2j")
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -72.0
+offset_top = -48.0
+offset_right = -15.0
+offset_bottom = -17.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Volver"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
