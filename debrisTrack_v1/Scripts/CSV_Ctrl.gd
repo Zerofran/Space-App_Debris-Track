@@ -25,7 +25,6 @@ func _escribir(Datos: Array = []):
 
 	if Datos != []:
 		file.store_csv_line(Datos, ";")
-		print(Datos, "prueba 2")
 	file.close()
 
 #esta resescribe y esta compuesta de dos partes, una que borra un elemento en concreto y otra
@@ -89,3 +88,11 @@ func filtroPorTipo(lista: Array, debri:bool = true) -> Array:
 
 func  FormatoDeVariables(Lista: Array):
 	pass
+func string_to_vector3d(cadena : String) -> Vector3:
+	var resultado : Vector3
+	var array : Array
+	cadena = cadena.erase(cadena.length() -1 , 1)
+	cadena = cadena.erase(0, 1)
+	array = cadena.split(",")
+	resultado = Vector3(float(array[0]), float(array[1]), float(array[2]))
+	return resultado

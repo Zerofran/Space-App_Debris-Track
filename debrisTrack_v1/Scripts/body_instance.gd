@@ -42,8 +42,8 @@ func _ready() -> void:
 	#dando referencias a los nodos para su destruccion
 	InstanceHUD.PhysicsBody = self
 	InstanceHUD.VisualBody = Instance
-	print(linear_velocity.length(), " linear_velocity antes, body instance")
-	print(VelocidadLineal, " VelocidadLineal en vector antes, body instance")
+	#print(linear_velocity.length(), " linear_velocity antes, body instance")
+	#print(VelocidadLineal, " VelocidadLineal en vector antes, body instance")
 	#endregion
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -52,14 +52,14 @@ func _physics_process(delta: float) -> void:
 	angular_damp = 0.0 # Desactiva la amortiguación angular
 	gravity_scale = 0.0 # Desactiva la gravedad global para pruebas
 
-	print(linear_velocity.length(), " VelocidadLineal despues")
+	#print(linear_velocity.length(), " VelocidadLineal despues")
 	
 	if Alert:
 		Instance.IconColor = Color("red")
-	var forceGravity = Math.GravityNewton(Masa, Math.tierraMasa, position, Vector3.ZERO,)
+	var forceGravity = Math.GravityNewton2(Masa, Math.tierraMasa, position, Vector3.ZERO,)
 	apply_central_force(forceGravity)
 	
-	print(forceGravity, " fuerza que ejerce la tierra")
+	#print(forceGravity.length(), " fuerza que ejerce la tierra")
 	
 	# control de la instancia visual
 	Instance.position = self.position/Math.earth_radius

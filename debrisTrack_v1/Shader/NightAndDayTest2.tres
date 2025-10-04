@@ -107,17 +107,17 @@ default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(1, 1, 1, 1), 2,
 op_type = 5
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_v866i"]
-size = Vector2(504, 198)
+size = Vector2(462.25, 191)
 title = "Textura de dia"
 attached_nodes = PackedInt32Array(30, 31, 29)
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_jx5dh"]
-size = Vector2(1269.69, 659.604)
+size = Vector2(1227.94, 652.604)
 title = "Vectos Mask"
 attached_nodes = PackedInt32Array(17, 10, 25, 8, 16, 24, 18, 15, 12, 11, 9, 7)
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_kfj2m"]
-size = Vector2(531.17, 195.811)
+size = Vector2(489.42, 188.811)
 title = "Textura Noche"
 attached_nodes = PackedInt32Array(32, 34, 33)
 

@@ -26,7 +26,15 @@ func GravityNewton(mass_1: float, mass_2: float, pos_i: Vector3, pos_f: Vector3,
 		var parte1 = ( masas/V_absoluto_cubo)
 		var F = r * parte1 * G
 		return F * Escala
-	
+
+func GravityNewton2(mass_1: float, mass_2: float, pos_i: Vector3, pos_f: Vector3, Escala: int = 1) -> Vector3:
+		var r = pos_f - pos_i
+		var V_absoluto = r.length() #magnitud de r distancia
+		var V_absoluto_cuadrado = pow(V_absoluto, 2)
+		var masas = mass_1 * mass_2 
+		var parte1 = ( masas/V_absoluto_cuadrado)
+		var F = r.normalized() * parte1 * G
+		return F * Escala
 #region Transformacione
 #funciones de trasnformacion
 func A_Recta_A_grados(horas: int , minutos: int, segundos:float):
@@ -52,11 +60,13 @@ func CoordenadasHorarias_A_Cartecianas(AR:float, D:float, r:float):
 	return Vector3(X, Y, Z)
 	
 # Convertir de coordenadas geográficas (lat, lon, alt) a coordenadas cartesianas 3D
-func Lat_lon_convert_to_cartesian(lat: float, lon: float, alt: float) -> Vector3:
+func Lat_lon_convert_to_cartesian(lat: float, lon: float, alt: float, km = false) -> Vector3:
 	# Convertir latitud y longitud de grados a radianes
 	#lon = lon * -1
 	lat = deg_to_rad(lat) 
 	lon = deg_to_rad(lon)
+	if km:
+		alt = alt * 1000
 	# Calcular las coordenadas cartesianas
 	var x = (earth_radius + alt) * cos(lat) * cos(lon)
 #aqui se multiplica por -1 para que coisida con la conveniencia de signos de los sitemas geograficos anguares

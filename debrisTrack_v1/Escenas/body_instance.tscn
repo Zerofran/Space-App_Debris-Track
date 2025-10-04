@@ -9,7 +9,9 @@ radius = 1.0
 radius = 20.0
 
 [node name="RigidBody3D" type="RigidBody3D"]
-can_sleep = false
+process_physics_priority = 1
+gravity_scale = -8.0
+freeze_mode = 1
 script = ExtResource("1_8w3oq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

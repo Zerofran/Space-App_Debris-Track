@@ -1,6 +1,6 @@
 extends Control
 
-var Main = load("res://debrisTrack_v1/Main.tscn") #main
+var Main = load("res://debrisTrack_v1/Escenas/Main.tscn") #main
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

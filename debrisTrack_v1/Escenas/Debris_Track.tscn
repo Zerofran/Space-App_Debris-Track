@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dli2o3acq5o5p"]
+[gd_scene load_steps=44 format=3 uid="uid://dli2o3acq5o5p"]
 
 [ext_resource type="Shader" uid="uid://dqrpjlvfh7kvx" path="res://debrisTrack_v1/Shader/NightAndDayTest2.tres" id="1_6k41k"]
 [ext_resource type="Script" path="res://debrisTrack_v1/Scripts/CamaraControl.gd" id="1_12dwo"]
@@ -15,6 +15,7 @@
 [ext_resource type="StyleBox" uid="uid://c4y7ntcv0qygj" path="res://debrisTrack_v1/HUD/PanelStyle/PanelStyleBox.tres" id="11_qmxxn"]
 [ext_resource type="Script" path="res://debrisTrack_v1/Scripts/debris_instance.gd" id="12_ocn5r"]
 [ext_resource type="Texture2D" uid="uid://dyrtcg4euvpiq" path="res://debrisTrack_v1/HUD/HUD Icon/fastForward.png" id="13_41w1v"]
+[ext_resource type="PackedScene" uid="uid://bpumndrdcoxhd" path="res://debrisTrack_v1/Escenas/body_instance.tscn" id="13_c4r1t"]
 [ext_resource type="Texture2D" uid="uid://bq33hyraicw6p" path="res://debrisTrack_v1/HUD/HUD Icon/forward.png" id="13_xgt6s"]
 [ext_resource type="Texture2D" uid="uid://c7q7qnp8uyw8" path="res://debrisTrack_v1/HUD/HUD Icon/import.png" id="15_3hcyw"]
 [ext_resource type="Texture2D" uid="uid://ccqwuuhf35bes" path="res://debrisTrack_v1/HUD/HUD Icon/signal3.png" id="16_0gtvd"]
@@ -179,6 +180,10 @@ far = 300.0
 
 [node name="DebrisInstance" type="Node3D" parent="InstanceEnviroment"]
 script = ExtResource("12_ocn5r")
+
+[node name="RigidBody3D2" parent="InstanceEnviroment/DebrisInstance" instance=ExtResource("13_c4r1t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50000, 6.361e+06, 6.373e+06)
+nombre = "Galileo"
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3

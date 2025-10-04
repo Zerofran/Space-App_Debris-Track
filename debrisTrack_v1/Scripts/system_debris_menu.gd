@@ -94,12 +94,12 @@ func _on_timer_where_the_iss_timeout() -> void:
 		timerStop = true
 		
 		var instance : RigidBody3D = Body_Instance.instantiate()
-		var rPositioni = Math.Lat_lon_convert_to_cartesian(OBJ_Data[0]["latitude"], OBJ_Data[0]["longitude"], OBJ_Data[0]["altitude"])
-		var rPositionf = Math.Lat_lon_convert_to_cartesian(OBJ_Data[1]["latitude"], OBJ_Data[1]["longitude"], OBJ_Data[1]["altitude"])
+		var rPositioni = Math.Lat_lon_convert_to_cartesian(OBJ_Data[0]["latitude"], OBJ_Data[0]["longitude"], OBJ_Data[0]["altitude"], true)
+		var rPositionf = Math.Lat_lon_convert_to_cartesian(OBJ_Data[1]["latitude"], OBJ_Data[1]["longitude"], OBJ_Data[1]["altitude"], true)
 		instance.linear_velocity = Math.velocity_cal(OBJ_Data[1]["velocity"], rPositionf,rPositioni, true)
 		instance.VelocidadLineal = Math.velocity_cal(OBJ_Data[1]["velocity"], rPositionf,rPositioni, true)
 		instance.mass = Math.IssMass
-		instance.position = Math.Lat_lon_convert_to_cartesian(OBJ_Data[1]["latitude"], OBJ_Data[1]["longitude"], OBJ_Data[1]["altitude"])
+		instance.position = Math.Lat_lon_convert_to_cartesian(OBJ_Data[1]["latitude"], OBJ_Data[1]["longitude"], OBJ_Data[1]["altitude"], true)
 		instance.ID = OBJ_Data[1]["id"]
 		instance.nombre = OBJ_Data[1]["name"]
 		$"../../InstanceEnviroment/DebrisInstance".add_child(instance)

@@ -89,6 +89,7 @@ func _on_ok_pressed() -> void:
 	CSV.setting(Url, CSV.encavezado, selector.get_item_text(selector.get_selected_id()))
 	var lista : Array = CSV._leer()
 	InstanceEnviroment_Debris.DebrisInstance = lista
+	InstanceEnviroment_Debris.Instace = true
 
 func _on_volver_pressed() -> void:
 	get_tree().change_scene_to_packed(Main)
@@ -97,8 +98,13 @@ func _on_volver_pressed() -> void:
 func _on_fast_time_2_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		Engine.time_scale = 10
-		SpaceEarthSistem.fastTime = true
-		$"../Globo terraqueo".fastTime = true
+		#Implementacion no funcional
+		SpaceEarthSistem.fastTime = false
+		$"../Globo terraqueo".fastTime = false
+	else:
+		Engine.time_scale = 1
+		SpaceEarthSistem.fastTime = false
+		$"../Globo terraqueo".fastTime = false
 		
 
 

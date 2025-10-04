@@ -87,23 +87,21 @@ FastTime={
 [physics]
 
 3d/run_on_separate_thread=true
-common/physics_jitter_fix=0.6
+common/max_physics_steps_per_frame=10
+common/physics_jitter_fix=0.7
 3d/physics_engine="JoltPhysics3D"
 3d/default_gravity=0.0
 3d/default_gravity_vector=Vector3(0, 0, 0)
 3d/default_linear_damp=0.0
 3d/default_angular_damp=0.0
-3d/sleep_threshold_linear=0.0
-3d/sleep_threshold_angular=0.0
-3d/solver/solver_iterations=30
-common/physics_interpolation=true
-jolt_3d/solver/velocity_iterations=20
-jolt_3d/solver/position_iterations=6
-jolt_3d/solver/position_correction=30.0
-jolt_3d/solver/bounce_velocity_threshold=0.0
+3d/solver/solver_iterations=60
+jolt_3d/sleep/enabled=false
+jolt_3d/solver/velocity_iterations=30
+jolt_3d/solver/position_iterations=10
+jolt_3d/solver/position_correction=70.0
 jolt_3d/solver/contact_speculative_distance=0.04
 jolt_3d/solver/contact_allowed_penetration=0.04
-jolt_3d/limits/max_linear_velocity=50000.0
+jolt_3d/limits/max_linear_velocity=20000.0
 jolt_3d/limits/max_angular_velocity=5400.0
 
 [rendering]
