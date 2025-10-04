@@ -28,14 +28,10 @@ La basura espacial representa una amenaza significativa para las operaciones esp
 El software está desarrollado utilizando **Godot 4.3**, un motor de juegos de código abierto, lo que permite una visualización interactiva y en tiempo real de los debris espaciales.
 Motor de Fisicas **Jolt** para calculos mas presisios de las coliciones y movimiento espacial, ademas de calculos agiles de fisicas interpoladas.
 
-## Autores
+## Desarrolladores
 
 - **Said Alejandro Narvaez Gallo**
 - **Francisco Josué Avendaño López**
-
-## Docente
-
-- **Docente Arnoldo**
 
 ## Cómo Empezar
 
