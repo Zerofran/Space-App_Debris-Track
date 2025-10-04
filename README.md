@@ -1,58 +1,90 @@
-# Software de Rastreo de Debris Espaciales
+# 🚀 Debris Track LEO
 
-## Descripción del Proyecto
+**Debris Track LEO** es un software en versión beta diseñado para rastrear y visualizar en tiempo real los desechos orbitales.  
+El proyecto integra datasets de la **Oficina del Programa de Desechos Orbitales de la NASA (ODPO)**, la API de la **Estación Espacial Internacional (ISS)**, observaciones de **NEOSSAT** (CSA, Agencia Espacial Canadiense) y archivos históricos de **Landsat** (USGS).
 
-Este proyecto consiste en el desarrollo de un software para el seguimiento y vigilancia de la basura espacial (debris) en la órbita terrestre. El objetivo principal es mitigar los riesgos asociados a la acumulación de desechos espaciales, protegiendo así la infraestructura espacial y garantizando la sostenibilidad de futuras misiones.
-
-## Importancia del Proyecto
-
-La basura espacial representa una amenaza significativa para las operaciones espaciales. Este software proporciona una solución innovadora para rastrear y monitorear estos desechos, permitiendo una mejor gestión y prevención de colisiones.
-
-## Características del Software
-
-- **Rastreo en tiempo real:** Monitoreo continuo de los debris espaciales.
-- **Visualización de trayectorias:** Representación gráfica de las órbitas de los desechos.
-- **Predicción de colisiones:** Algoritmos avanzados para predecir posibles impactos.
-- **Base de datos de debris:** Información detallada sobre los objetos rastreados.
-- **Fisicas:** las simulaciones cuentan con el motor de fisicas jolt y funciones de la ley de gravitacion universal y leyes de kepler para optener los resultados mas sercanos posibles a las trayectorias reales de los debris.
-
-## Tecnología Utilizada
-
-El software está desarrollado utilizando **Godot 4.2**, un motor de juegos de código abierto, lo que permite una visualización interactiva y en tiempo real de los debris espaciales.
-Motor de Fisicas **Jolt** para calculos mas presisios de las coliciones y movimiento espacial, ademas de calculos agiles de fisicas interpoladas.
-
-## Autores
-
-- **Said Alejandro Narvaez Gallo**
-- **Francisco Josué Avendaño López**
-
-## Docente
-
-- **Docente Arnoldo**
-- **Elba Mairena**
-
-## Cómo Empezar
-
-1. **Clonar el repositorio:**
-    ```bash
-    git clone https://github.com/Zerofran/Debris-Track.git
-    ```
-2. **Abrir el proyecto en Godot 4.2:**
-    - Abrir Godot 4.2.
-    - Seleccionar `Import` y navegar hasta el directorio del proyecto clonado.
-    - Cargar el archivo `project.godot`.
-
-3. **Ejecutar el proyecto:**
-    - Hacer clic en el botón `Run` en Godot.
-
-## Contribuciones
-
-Las contribuciones son bienvenidas. Por favor, abre un issue o envía un pull request para mejorar el proyecto.
-
-## Licencia
-
-Este proyecto está bajo la Licencia MIT. Para más detalles, consulta el archivo [LICENSE](LICENSE).
+Al validar los modelos orbitales con los parámetros dinámicos en tiempo real de la ISS, **Debris Track** asegura precisión en el rastreo y ofrece una base para operaciones sostenibles y comerciales en la órbita baja terrestre (LEO).
 
 ---
 
-¡Gracias
+## 📌 Descripción del Proyecto
+
+- **Problema**: LEO está cada vez más saturada de desechos orbitales, lo que representa un riesgo para satélites, la ISS y futuras actividades comerciales. Las herramientas actuales son demasiado técnicas o demasiado simples, y rara vez combinan datos reales con visualizaciones accesibles.  
+- **Solución**: Un software beta que combina **datasets reales + modelado matemático** para crear una herramienta interactiva capaz de rastrear desechos, validar modelos orbitales y apoyar la toma de decisiones en la comercialización del LEO.  
+- **Visión**: Escalar desde un prototipo de investigación hacia una herramienta global que permita a científicos, responsables políticos, industria y público gestionar el entorno orbital de manera sostenible.
+
+---
+
+## ⚙️ Cómo Funciona
+
+**Entrada**  
+- Datasets de NASA ODPO (*ARES Quarterly News*)  
+- API de la ISS (posición, velocidad, altitud)  
+- Archivos astronómicos FITS de NEOSSAT (CSA)  
+- Datos Landsat del USGS (caso Landsat 4, explosión de propulsor)
+
+**Procesamiento**  
+- Modelos orbitales en **Python**  
+- Motor de visualización en **Godot** (GDScript + integración con Python)  
+- Validación con el rastreo de la órbita de la ISS
+
+**Salida**  
+- Visualización interactiva en tiempo real de desechos en LEO  
+- Simulaciones educativas y de apoyo a la toma de decisiones
+
+---
+
+## 🌍 Beneficios
+
+- **Científicos**: Modelos validados y confiables.  
+- **Industria espacial**: Herramienta de soporte a la toma de decisiones para operadores satelitales.  
+- **Responsables políticos**: Visualizaciones accesibles para políticas de sostenibilidad espacial.  
+- **Educación y público**: Plataforma didáctica para concientizar sobre el problema de los desechos orbitales.
+
+---
+
+## 🛠️ Tecnologías Utilizadas
+
+- **Lenguajes**: Python, GDScript  
+- **Motor**: Godot  
+- **Formatos de datos**: TLE, FITS, imágenes Landsat  
+- **Herramientas**: SaoImage DS9, script propio (*NEOSSAT_Data.py*)
+
+---
+
+## 📊 Estado Actual (Beta)
+
+✅ Rastreo en tiempo real de desechos orbitales  
+✅ Integración con datasets de NASA, CSA y USGS  
+✅ Validación con parámetros dinámicos de la ISS  
+
+🚧 Próximos pasos:  
+- Modelado predictivo de colisiones  
+- Dashboards web para industria y políticas  
+- Interfaz más accesible para usuarios no expertos
+
+---
+
+## 🔮 Visión a Futuro
+
+**Debris Track LEO** busca evolucionar hacia una **plataforma de nivel comercial** para operaciones sostenibles en LEO.  
+
+Próximas funcionalidades:  
+- Analítica predictiva para evitar colisiones  
+- Dashboards comerciales para operadores satelitales  
+- Integración web y móvil  
+- Colaboración con agencias espaciales y sector privado
+
+---
+
+## 🤝 Contribuciones
+
+Este proyecto inició como parte del **NASA Space Apps Challenge 2025** y actualmente se encuentra en versión beta.  
+Se reciben sugerencias y colaboraciones para expandir **Debris Track** hacia una plataforma operativa completa.
+
+---
+
+## 📜 Licencia
+
+Este proyecto está licenciado bajo la **GNU General Public License v3.0 (GPL-3.0)**.  
+Consulta el archivo [LICENSE](./LICENSE) para más detalles.
