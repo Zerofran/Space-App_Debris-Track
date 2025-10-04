@@ -2,23 +2,23 @@
 
 [ext_resource type="Script" path="res://debrisTrack_v1/Scripts/body_instance.gd" id="1_8w3oq"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_6meet"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_7lkvx"]
 radius = 1.0
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_wrilq"]
-radius = 20.0
+[sub_resource type="SphereShape3D" id="SphereShape3D_ru1ns"]
+radius = 50.0
 
-[node name="RigidBody3D" type="RigidBody3D"]
-can_sleep = false
+[node name="PhysicsBodyInstance" type="RigidBody3D"]
+linear_damp_mode = 1
 script = ExtResource("1_8w3oq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_6meet")
+shape = SubResource("SphereShape3D_7lkvx")
 
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("SphereShape3D_wrilq")
+shape = SubResource("SphereShape3D_ru1ns")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

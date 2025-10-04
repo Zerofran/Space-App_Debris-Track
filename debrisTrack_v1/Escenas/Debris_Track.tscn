@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dli2o3acq5o5p"]
+[gd_scene load_steps=42 format=3 uid="uid://dli2o3acq5o5p"]
 
 [ext_resource type="Shader" uid="uid://dqrpjlvfh7kvx" path="res://debrisTrack_v1/Shader/NightAndDayTest2.tres" id="1_6k41k"]
 [ext_resource type="Script" path="res://debrisTrack_v1/Scripts/CamaraControl.gd" id="1_12dwo"]
@@ -81,10 +81,7 @@ material = SubResource("ShaderMaterial_1dqo3")
 radius = 0.9
 height = 1.75
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8bh0q"]
-
 [sub_resource type="SphereMesh" id="SphereMesh_o4ulh"]
-material = SubResource("StandardMaterial3D_8bh0q")
 radius = 0.9
 height = 1.8
 
@@ -160,12 +157,6 @@ mesh = SubResource("SphereMesh_o4ulh")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = SubResource("ShaderMaterial_x4gti")
 
-[node name="Hologram" type="MeshInstance3D" parent="Globo terraqueo/Space/Tierra"]
-transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, 0)
-visible = false
-mesh = SubResource("SphereMesh_o4ulh")
-skeleton = NodePath("../../../..")
-
 [node name="Camera_Control" type="Node3D" parent="."]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0, 0, 0)
 script = ExtResource("1_12dwo")
@@ -191,6 +182,7 @@ mouse_filter = 2
 script = ExtResource("11_px043")
 
 [node name="TopBar" type="Control" parent="HUD"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -361,7 +353,6 @@ size_flags_stretch_ratio = 0.15
 mouse_filter = 1
 
 [node name="SystemDebrisMenu" type="Control" parent="HUD"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -599,7 +590,6 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 12
 
 [node name="Label" type="Label" parent="HUD/SystemDebrisMenu/SplitContainer/VSplitPrincipal/VSplitLeftContainer/Inspect2_L_Dawn/HBoxContainer/VContainer2/Container2/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer2/ObjectHUDContainer"]
 layout_mode = 2
@@ -746,14 +736,11 @@ shape = SubResource("RectangleShape2D_tncre")
 use_threads = true
 
 [node name="TimerWhereTheIss" type="Timer" parent="HUD"]
-wait_time = 2.0
+wait_time = 3.0
 autostart = true
-
-[node name="fastTime" type="Timer" parent="HUD"]
 
 [connection signal="pressed" from="HUD/TopBar/VBoxContainer/TopContainer/BarraSuperior/VBoxContainer/HBoxContainer/LoadData/OK" to="HUD" method="_on_ok_pressed"]
 [connection signal="pressed" from="HUD/TopBar/VBoxContainer/DawnContainer/Volver" to="HUD" method="_on_volver_pressed"]
-[connection signal="toggled" from="HUD/TopBar/VBoxContainer/DawnContainer/FastTime2" to="HUD" method="_on_fast_time_2_toggled"]
 [connection signal="pressed" from="HUD/SystemDebrisMenu/SplitContainer/VSplitPrincipal/VSplitLeftContainer/Inspect1_L_Up/ScrollContainer/VBoxContainer/Container1/RegistroColiciones" to="HUD/SystemDebrisMenu" method="_on_registro_coliciones_pressed"]
 [connection signal="pressed" from="HUD/SystemDebrisMenu/SplitContainer/VSplitPrincipal/VSplitLeftContainer/Inspect1_L_Up/ScrollContainer/VBoxContainer/Container1/Objeto" to="HUD/SystemDebrisMenu" method="_on_objeto_pressed"]
 [connection signal="pressed" from="HUD/SystemDebrisMenu/SplitContainer/VSplitPrincipal/VSplitLeftContainer/Inspect1_L_Up/ScrollContainer/VBoxContainer/Container1/Online" to="HUD/SystemDebrisMenu" method="_on_online_pressed"]
@@ -766,4 +753,3 @@ autostart = true
 [connection signal="mouse_exited" from="HUD/CollisionCentered/Area2D" to="Camera_Control" method="_on_area_2d_mouse_exited"]
 [connection signal="request_completed" from="HUD/HTTPRequest" to="HUD/SystemDebrisMenu" method="_on_http_request_request_completed"]
 [connection signal="timeout" from="HUD/TimerWhereTheIss" to="HUD/SystemDebrisMenu" method="_on_timer_where_the_iss_timeout"]
-[connection signal="timeout" from="HUD/fastTime" to="HUD" method="_on_fast_time_timeout"]

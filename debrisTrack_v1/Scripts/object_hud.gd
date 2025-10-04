@@ -5,11 +5,9 @@ extends Control
 
 
 @export var nombre : String = "Sarya"
-@export var masa : float 
 @export var Debri = true
 @export var Grande : bool = false
 @export var BodyPosition : Vector3 = Vector3.ZERO
-@export var Bodyvelocity : Vector3
 
 
 @onready var Icon : TextureRect = $BoxContainer/HBoxContainer/PrincipalContainer/HBoxContainer/IconContainer/Icon
@@ -22,8 +20,6 @@ extends Control
 
 #llamada a nodos
 @onready var labelName : Label = $BoxContainer/HBoxContainer/PrincipalContainer/HBoxContainer/ElementContainer/HBoxContainer/Nombre
-@onready var labelMasa : Label = $BoxContainer/HBoxContainer/PrincipalContainer/HBoxContainer/ElementContainer/HBoxContainer/masa
-
 
 func _ready() -> void:
 	Icon.texture = iconTexture
@@ -34,7 +30,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	Icon.modulate = IconModulate
 	Posicion.text = "Posicion: " + str(BodyPosition)
-	labelMasa.text = str(int(Bodyvelocity.length()))
 	
 
 

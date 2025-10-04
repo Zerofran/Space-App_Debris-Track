@@ -1,15 +1,8 @@
-# Space-App_Debris-Track
-
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/68a00706-b48e-4f08-9b5a-c922414a1456" alt="Captura de pantalla" width="50%">
-  <h1>Software de Rastreo de Debris Espaciales</h1>
-</div>
-
+# Software de Rastreo de Debris Espaciales
 
 ## Descripción del Proyecto
 
 Este proyecto consiste en el desarrollo de un software para el seguimiento y vigilancia de la basura espacial (debris) en la órbita terrestre. El objetivo principal es mitigar los riesgos asociados a la acumulación de desechos espaciales, protegiendo así la infraestructura espacial y garantizando la sostenibilidad de futuras misiones.
-## Proyecto en proceso de refactorizacion
 
 ## Importancia del Proyecto
 
@@ -25,13 +18,18 @@ La basura espacial representa una amenaza significativa para las operaciones esp
 
 ## Tecnología Utilizada
 
-El software está desarrollado utilizando **Godot 4.3**, un motor de juegos de código abierto, lo que permite una visualización interactiva y en tiempo real de los debris espaciales.
+El software está desarrollado utilizando **Godot 4.2**, un motor de juegos de código abierto, lo que permite una visualización interactiva y en tiempo real de los debris espaciales.
 Motor de Fisicas **Jolt** para calculos mas presisios de las coliciones y movimiento espacial, ademas de calculos agiles de fisicas interpoladas.
 
-## Desarrolladores
+## Autores
 
 - **Said Alejandro Narvaez Gallo**
 - **Francisco Josué Avendaño López**
+
+## Docente
+
+- **Docente Arnoldo**
+- **Elba Mairena**
 
 ## Cómo Empezar
 
@@ -46,3 +44,15 @@ Motor de Fisicas **Jolt** para calculos mas presisios de las coliciones y movimi
 
 3. **Ejecutar el proyecto:**
     - Hacer clic en el botón `Run` en Godot.
+
+## Contribuciones
+
+Las contribuciones son bienvenidas. Por favor, abre un issue o envía un pull request para mejorar el proyecto.
+
+## Licencia
+
+Este proyecto está bajo la Licencia MIT. Para más detalles, consulta el archivo [LICENSE](LICENSE).
+
+---
+
+¡Gracias

@@ -17,11 +17,7 @@ run/main_scene="res://debrisTrack_v1/Escenas/Main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 run/max_fps=30
 run/low_processor_mode=true
-boot_splash/bg_color=Color(0, 0, 0, 1)
-boot_splash/image="res://IMG/logo2.png"
-config/icon="res://IMG/logo2.png"
-config/windows_native_icon="res://IMG/favicon (2).ico"
-boot_splash/minimum_display_time=300
+config/icon="res://icon.svg"
 
 [autoload]
 
@@ -32,10 +28,6 @@ CSV="*res://debrisTrack_v1/Scripts/CSV_Ctrl.gd"
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
-
-[editor]
-
-movie_writer/movie_file="D:/proyectos Godot/Exportacione/captura.avi"
 
 [gui]
 
@@ -78,33 +70,19 @@ volver={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
-FastTime={
-"deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"location":0,"echo":false,"script":null)
-]
-}
 
 [physics]
 
 3d/run_on_separate_thread=true
 common/physics_jitter_fix=0.6
-3d/physics_engine="JoltPhysics3D"
 3d/default_gravity=0.0
-3d/default_gravity_vector=Vector3(0, 0, 0)
-3d/default_linear_damp=0.0
-3d/default_angular_damp=0.0
-3d/sleep_threshold_linear=0.0
-3d/sleep_threshold_angular=0.0
-3d/solver/solver_iterations=30
+3d/solver/solver_iterations=20
 common/physics_interpolation=true
 jolt_3d/solver/velocity_iterations=20
 jolt_3d/solver/position_iterations=6
 jolt_3d/solver/position_correction=30.0
-jolt_3d/solver/bounce_velocity_threshold=0.0
 jolt_3d/solver/contact_speculative_distance=0.04
 jolt_3d/solver/contact_allowed_penetration=0.04
-jolt_3d/limits/max_linear_velocity=50000.0
-jolt_3d/limits/max_angular_velocity=5400.0
 
 [rendering]
 

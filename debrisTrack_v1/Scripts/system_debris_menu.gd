@@ -30,17 +30,17 @@ var Api2 : String = "https://www.n2yo.com/api/"
 
 #nodo que se va a instancear
 var Body_Instance : PackedScene = preload("res://debrisTrack_v1/Escenas/body_instance.tscn")
-var visualinstance
+var instance
 func _ready() -> void:
 	var bodyVisual = preload("res://debrisTrack_v1/Escenas/body_instance.tscn")
-	visualinstance = bodyVisual.instantiate()
-	visualinstance.position = Math.Lat_lon_convert_to_cartesian(0, 0, 1)
-	#DebrisInstance.add_child(visualinstance)
+	instance = bodyVisual.instantiate()
+	instance.position = Math.Lat_lon_convert_to_cartesian(0, 10, 20)
+	DebrisInstance.add_child(instance)
 	
 	AnimSignal.texture.current_frame = 0
 
 func _process(delta: float) -> void:
-	#visualinstance.position = Math.Lat_lon_convert_to_cartesian(0, 0, 1)
+	instance.position = Math.Lat_lon_convert_to_cartesian(0, -20, 20)
 	#bloqueando el deslizador horizontal
 	hsplit.split_offset = clamp(hsplit.split_offset, 180, 800)
 	
@@ -71,8 +71,8 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 		Consola.append_text("[center][color=green]"+ str(response) + "[/color][/center]")
 		Consola.append_text("[center][color=green]"+ str(Time.get_datetime_dict_from_system()) + "[/color][/center]")
 		OBJ_Data.append(response)
-		#print(Time.get_datetime_dict_from_system(true), " hora de la llamada")
-		#print(OBJ_Data)
+		print(Time.get_datetime_dict_from_system(true), " hora de la llamada")
+		print(OBJ_Data)
 
 	else:
 		Consola.append_text("[center][color=red]----Retorno de elemento basio [], verifique coneccion a internet----[/color][/center]")
@@ -93,11 +93,7 @@ func _on_timer_where_the_iss_timeout() -> void:
 		$"../TimerWhereTheIss".stop()
 		timerStop = true
 		
-		var instance : RigidBody3D = Body_Instance.instantiate()
-		var rPositioni = Math.Lat_lon_convert_to_cartesian(OBJ_Data[0]["latitude"], OBJ_Data[0]["longitude"], OBJ_Data[0]["altitude"])
-		var rPositionf = Math.Lat_lon_convert_to_cartesian(OBJ_Data[1]["latitude"], OBJ_Data[1]["longitude"], OBJ_Data[1]["altitude"])
-		instance.linear_velocity = Math.velocity_cal(OBJ_Data[1]["velocity"], rPositionf,rPositioni, true)
-		instance.VelocidadLineal = Math.velocity_cal(OBJ_Data[1]["velocity"], rPositionf,rPositioni, true)
+		var instance : Node3D = Body_Instance.instantiate()
 		instance.mass = Math.IssMass
 		instance.position = Math.Lat_lon_convert_to_cartesian(OBJ_Data[1]["latitude"], OBJ_Data[1]["longitude"], OBJ_Data[1]["altitude"])
 		instance.ID = OBJ_Data[1]["id"]

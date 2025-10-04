@@ -20,8 +20,10 @@ var InstanceHUD : Control
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#definir parametros del nodo
-	#self.linear_velocity = VelocidadLineal
-	Masa = mass
+	if nombre == "iss":
+		mass = Math.IssMass
+	else:
+		mass = Masa
 	set_name(nombre)
 	#region Instanciando cuerpos
 # Aqui se instancia el objeto visual, el que siempre estara en camara
@@ -35,38 +37,31 @@ func _ready() -> void:
 	InstanceHUD = Body_HUD.instantiate()
 	InstanceHUD.set_name(name)
 	InstanceHUD.nombre = name
-	InstanceHUD.masa = mass
 	InstanceHUD.ID = ID
 	InstanceHUD.iconTexture = Instance.iconTexture
 	HUD_BoxContainer.add_child(InstanceHUD) #instancia como hijo del contenedor de interfaz
 	#dando referencias a los nodos para su destruccion
 	InstanceHUD.PhysicsBody = self
 	InstanceHUD.VisualBody = Instance
-	print(linear_velocity.length(), " linear_velocity antes, body instance")
-	print(VelocidadLineal, " VelocidadLineal en vector antes, body instance")
 	#endregion
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	linear_damp = 0.0 # Desactiva la amortiguación lineal
-	angular_damp = 0.0 # Desactiva la amortiguación angular
-	gravity_scale = 0.0 # Desactiva la gravedad global para pruebas
-
-	print(linear_velocity.length(), " VelocidadLineal despues")
-	
 	if Alert:
 		Instance.IconColor = Color("red")
-	var forceGravity = Math.GravityNewton(Masa, Math.tierraMasa, position, Vector3.ZERO,)
-	apply_central_force(forceGravity)
-	
-	print(forceGravity, " fuerza que ejerce la tierra")
+	#var forceGravity = Math.GravityNewton(Masa, Math.tierraMasa, global_position, Vector3.ZERO)
+	#self.constant_force = forceGravity * 10e5
 	
 	# control de la instancia visual
 	Instance.position = self.position/Math.earth_radius
 	
 	#control de la instancia en el HUD
 	InstanceHUD.BodyPosition = position
-	InstanceHUD.Bodyvelocity = linear_velocity
+
+#funcion para destruir el cuerpo
+func Destroy():
+	print_rich( "El nodo ","[color=red][b]", nombre,"[/b][/color]", " a sido eliminado")
+	queue_free()
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("PhysicsBody"):

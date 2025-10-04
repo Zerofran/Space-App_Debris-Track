@@ -65,13 +65,6 @@ func Lat_lon_convert_to_cartesian(lat: float, lon: float, alt: float) -> Vector3
 
 	return Vector3(x, y, z)
 	
-func velocity_cal(magnitude, rf, ri, km_h = false)-> Vector3:
-	if km_h:
-		magnitude = (magnitude * 1000)/3600.0
-	var vector : Vector3 = rf - ri
-	var UnityVector = vector.normalized()
-	return (UnityVector * magnitude)
-	
 #para los debris de los .fits
 func  DebrisMass(radio: float, V_angular:float):
 	var Mass = ((pow(V_angular, 2) * pow(radio, 3))/G) - tierraMasa
@@ -92,8 +85,7 @@ func DebrisAngularVelocity_magnitud(Dec_i: float, Dec_f: float, AR_i: float, AR_
 func TangencialVelocity(AgularV: float, r_vector: Vector3):
 	var V: Vector3 = AgularV * r_vector
 	return V
-
-
+	
 #endregion
 
 
@@ -164,23 +156,6 @@ func juliano_a_gregoriano(dia_juliano: float) -> Dictionary:
 		"minutos": minutos,
 		"segundos": segundos
 	}
-
-func seconds_to_hms(total_seconds: int) -> Dictionary:
-	# Asegurarse de que los segundos sean positivos
-	total_seconds = max(total_seconds, 0)
-
-	# Calcular horas, minutos y segundos
-	var hours = total_seconds / 3600
-	var minutes = (total_seconds % 3600) / 60
-	var seconds = total_seconds % 60
-
-	# Retornar un diccionario con los valores
-	return {
-		"hours": hours,
-		"minutes": minutes,
-		"seconds": seconds
-	}
-
 #endregion
 
 #---------------------------------------------------------------------------------------------------
